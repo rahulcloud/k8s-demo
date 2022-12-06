@@ -42,4 +42,20 @@ k8s-demo
 
 ```sudo hostnamectl set-hostname master```
 
+  Then write `bash`and hit enter to see the new hostname.
+  
+**Before installing Kubernetes packages, we should update the system.
+
+```sudo apt-get update``` 
+
+**Now, we can install helper packages for Kubernetes.
+
+```sudo apt-get install -y apt-transport-https gnupg2```
+
+**Continue installing the helper packages
+
+```curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list```
+
+
 
