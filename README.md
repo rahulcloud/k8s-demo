@@ -9,3 +9,12 @@ k8s-demo
 
 ##When configuring the instances, we should choose at least `2 CPU Core` and `2GB RAM` at minimum to get the system working efficiently. In terms of instance type,`t2.medium` does the job so we will use it to satisfy the minimum infrastructure requirement.
 
+**Ports for the Control-plane (Master) Node(s)
+
+1. TCP 6443      → For Kubernetes API server
+2. TCP 2379–2380 → For etcd server client API
+3. TCP 10250     → For Kubelet API
+4. TCP 10259     → For kube-scheduler
+5. TCP 10257     → For kube-controller-manager
+6. TCP 22        → For remote access with ssh
+7. UDP 8472      → Cluster-Wide Network Comm. — Flannel VXLAN
