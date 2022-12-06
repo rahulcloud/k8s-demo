@@ -59,5 +59,40 @@ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
 ```
 
+**We need to update the system again after we are done with the helper packages.
+
+```sudo apt-get update```
+
+**Continue with the Kubernetes installation including Docker
+
+```sudo apt-get install -y kubectl kubeadm kubelet kubernetes-cni docker.io```
+
+**Now we have to start and enable Docker service.
+```
+sudo systemctl start docker
+sudo systemctl enable docker
+```
+**For the Docker group to work smoothly without using sudo command, we should add the current user to the `Docker group`.
+
+```sudo usermod -aG docker $USER```
+
+**Now we run the following command so that the changes take affect immediately.
+
+```newgrp docker```
+
+**As a requirement, update the `iptables` of Linux Nodes to enable them to see bridged traffic correctly. Thus, you should ensure `net.bridge.bridge-nf-call-iptables` is set to `1` in your `sysctl` config and activate `iptables` immediately.
+
+```
+cat << EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+sudo sysctl — system
+```
+# We are done with the initial configuration of the master node. Now we will repeat all 10 steps for the worker node. The only difference would be the name of the node.
+
+**Change the terminal to the worker node instance and change the host name
+
+```sudo hostnamectl set-hostname worker```
 
 
