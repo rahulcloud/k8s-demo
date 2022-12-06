@@ -10,7 +10,7 @@ k8s-demo
 ##When configuring the instances, we should choose at least `2 CPU Core` and `2GB RAM` at minimum to get the system working efficiently. In terms of instance type,`t2.medium` does the job so we will use it to satisfy the minimum infrastructure requirement.
 
 **Ports for the Control-plane (Master) Node(s)
-
+```
 1. TCP 6443      → For Kubernetes API server
 2. TCP 2379–2380 → For etcd server client API
 3. TCP 10250     → For Kubelet API
@@ -18,14 +18,14 @@ k8s-demo
 5. TCP 10257     → For kube-controller-manager
 6. TCP 22        → For remote access with ssh
 7. UDP 8472      → Cluster-Wide Network Comm. — Flannel VXLAN
-
+```
 **Ports for the Worker Node(s)
-
+```
 1. TCP 10250       → For Kubelet API
 2. TCP 30000–32767 → NodePort Services†
 3. TCP 22          → For remote access with ssh
 4. UDP 8472        → Cluster-Wide Network Comm. — Flannel VXLAN
-
+```
 **Part 2 Creating instances
 
 1. Go to the AWS Console, EC2 Service and hit on `Launch instance`.
